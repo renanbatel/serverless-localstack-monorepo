@@ -1,0 +1,42 @@
+{
+  "name": "serverless-localstack-monorepo",
+  "version": "0.0.1",
+  "description": "A monorepo serverless development environment using localstack",
+  "private": true,
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/modules/*",
+      "packages/utils/*",
+      "packages/workflows/*"
+    ]
+  },
+  "scripts": {
+    "clean": "lerna run clean",
+    "local:build": "lerna run local:build",
+    "local:watch": "lerna run local:watch --stream --parallel",
+    "local:deploy": "env $(cat .conf) lerna run local:deploy",
+    "local:remove": "env $(cat .conf) lerna run local:remove"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@types/aws-lambda": "^8.10.40",
+    "@types/node": "^13.7.0",
+    "babel-loader": "^8.0.6",
+    "cache-loader": "^4.1.0",
+    "chokidar-cli": "^2.1.0",
+    "fork-ts-checker-webpack-plugin": "^4.0.3",
+    "lerna": "^3.20.2",
+    "serverless": "^1.63.0",
+    "serverless-localstack": "^0.4.24",
+    "serverless-webpack": "^5.3.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.613.0"
+  }
+}

@@ -1,0 +1,26 @@
+service: invoice
+
+frameworkVersion: '1.63.0'
+
+plugins:
+  - serverless-localstack
+  - serverless-webpack
+
+package:
+  individually: false
+
+custom:
+  webpack:
+    ${file(../../../serverless.config.yml):custom.webpack}
+  localstack:
+    ${file(../../../serverless.config.yml):custom.localstack}
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'us-east-1'}
+
+functions:
+  - ${file(functions/get-invoices.yml)}
+  - ${file(functions/create-invoice.yml)}

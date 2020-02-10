@@ -1,0 +1,3 @@
+# Serverless Localstack Monorepo
+
+A monorepo serverless development environment using localstack, the idea is to run all the needed resources inside AWS Localstack, including Lambda functions, SQS queues, S3 Buckets and stuff. This project is under construction...

@@ -1,0 +1,13 @@
+custom:
+  webpack:
+    webpackConfig: '../../../webpack.config.js'
+    packager: 'yarn'
+    keepOutputDirectory: true
+  localstack:
+    stages:
+      - local
+    host: http://localhost
+    autostart: true
+    lambda:
+      mountCode: true
+    debug: true

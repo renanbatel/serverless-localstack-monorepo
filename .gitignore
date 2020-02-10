@@ -1,0 +1,10 @@
+# node
+node_modules
+
+# data
+.localstack
+
+# build
+.serverless
+.webpack
+.webpackCache
