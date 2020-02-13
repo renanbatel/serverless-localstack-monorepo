@@ -7,7 +7,7 @@ plugins:
   - serverless-webpack
 
 package:
-  individually: true
+  individually: false
 
 custom:
   webpack:

@@ -15,8 +15,9 @@
     "clean": "lerna run clean",
     "local:build": "lerna run local:build",
     "local:watch": "lerna run local:watch --stream --parallel",
-    "local:deploy": "env $(cat .conf) lerna run local:deploy",
-    "local:remove": "env $(cat .conf) lerna run local:remove"
+    "local:deploy": "lerna run local:deploy",
+    "local:remove": "lerna run local:remove",
+    "local:dev": "yarn local:build && env $(cat .conf) ENTRYPOINT=-d localstack start && yarn local:deploy && yarn local:watch"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
