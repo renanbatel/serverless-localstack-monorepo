@@ -10,6 +10,8 @@ package:
   individually: false
 
 custom:
+  names:
+    ${file(../../../serverless.config.yml):custom.names}
   webpack:
     ${file(../../../serverless.config.yml):custom.webpack}
   localstack:
@@ -20,6 +22,15 @@ provider:
   runtime: nodejs10.x
   stage: ${opt:stage, 'local'}
   region: ${opt:region, 'us-east-1'}
+  iamRoleStatements:
+    ${file(../../../roles/dynamodb-table-full-access.yml)}
+  environment:
+    ENV_STAGE: ${self:provider.stage}
+    DYNAMODB_TABLE: ${self:custom.names.dynamodbTable}
+
+resources:
+  - ${file(../../../resources/dynamodb-table.yml)}
 
 functions:
   - ${file(functions/create-user.yml)}
+  - ${file(functions/get-users.yml)}

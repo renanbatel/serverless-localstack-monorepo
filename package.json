@@ -13,11 +13,12 @@
   },
   "scripts": {
     "clean": "lerna run clean",
+    "local:up": "env $(cat .conf) ENTRYPOINT=-d localstack start",
     "local:build": "lerna run local:build",
     "local:watch": "lerna run local:watch --stream --parallel",
     "local:deploy": "lerna run local:deploy",
     "local:remove": "lerna run local:remove",
-    "local:dev": "yarn local:build && env $(cat .conf) ENTRYPOINT=-d localstack start && yarn local:deploy && yarn local:watch"
+    "local:dev": "yarn local:build && yarn local:up && sleep 5 && yarn local:deploy && yarn local:watch"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

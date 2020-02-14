@@ -1,4 +1,6 @@
 custom:
+  names:
+    dynamodbTable: serverless-localstack-monorepo-${self:provider.stage}
   webpack:
     webpackConfig: '../../../webpack.config.js'
     packager: 'yarn'
