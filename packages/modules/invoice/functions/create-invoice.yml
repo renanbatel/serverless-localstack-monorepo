@@ -1,7 +1,0 @@
-createInvoice:
-  name: createInvoice-${self:provider.stage}
-  handler: src/create-invoice.apiGatewayHandler
-  events:
-    - http:
-        path: /invoices
-        method: post

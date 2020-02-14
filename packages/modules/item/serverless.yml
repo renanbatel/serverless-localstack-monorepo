@@ -1,4 +1,4 @@
-service: user
+service: item
 
 frameworkVersion: '1.63.0'
 
@@ -32,5 +32,5 @@ resources:
   - ${file(../../../resources/dynamodb-table.yml)}
 
 functions:
-  - ${file(functions/create-user.yml)}
-  - ${file(functions/get-users.yml)}
+  - ${file(functions/create-item.yml)}
+  - ${file(functions/get-items.yml)}

@@ -1,7 +1,0 @@
-createUser:
-  name: createUser-${self:provider.stage}
-  handler: src/create-user.apiGatewayHandler
-  events:
-    - http:
-        path: /users
-        method: post

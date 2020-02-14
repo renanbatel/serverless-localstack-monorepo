@@ -1,0 +1,7 @@
+createItem:
+  name: createItem-${self:provider.stage}
+  handler: src/create-item.apiGatewayHandler
+  events:
+    - http:
+        path: /items
+        method: post

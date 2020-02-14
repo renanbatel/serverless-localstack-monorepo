@@ -10,4 +10,4 @@
   # Restrict our IAM role permissions to
   # the specific table for the stage
   Resource:
-    - 'Fn::GetAtt': [AppTable, Arn]
+    - 'Fn::GetAtt': [ItemsTable, Arn]

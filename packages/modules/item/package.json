@@ -1,5 +1,5 @@
 {
-  "name": "invoice",
+  "name": "item",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -8,5 +8,8 @@
     "local:watch": "chokidar 'src/**/*.ts' -i '(node_modules|__tests__)' -c 'yarn local:build' --verbose",
     "local:deploy": "LAMBDA_MOUNT_CWD=$(pwd)/.webpack/service sls deploy --stage local",
     "local:remove": "LAMBDA_MOUNT_CWD=$(pwd)/.webpack/service sls remove --stage local"
+  },
+  "dependencies": {
+    "uuid": "^3.4.0"
   }
 }

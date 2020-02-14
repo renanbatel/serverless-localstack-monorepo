@@ -1,7 +1,0 @@
-getInvoices:
-  name: getInvoices-${self:provider.stage}
-  handler: src/get-invoices.apiGatewayHandler
-  events:
-    - http:
-        path: /invoices
-        method: get

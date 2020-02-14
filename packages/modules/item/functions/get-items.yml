@@ -1,0 +1,7 @@
+getItems:
+  name: getItems-${self:provider.stage}
+  handler: src/get-items.apiGatewayHandler
+  events:
+    - http:
+        path: /items
+        method: get

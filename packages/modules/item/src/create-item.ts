@@ -1,26 +1,28 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { badRequestResponse, getDynamoDB, internalErrorResponse, successResponse } from 'sdk';
+import uuid from 'uuid';
 
 export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
-  const { username, password } = JSON.parse(event.body);
+  const { content } = JSON.parse(event.body);
 
-  if (!username || !password) {
+  if (!content) {
     return badRequestResponse();
   }
 
   try {
     const dynamodb = getDynamoDB();
-    const user = await dynamodb
+    const id = uuid.v4();
+    const item = await dynamodb
       .put({
         TableName: process.env.DYNAMODB_TABLE,
         Item: {
-          username,
-          password,
+          id,
+          content,
         },
       })
       .promise();
 
-    return successResponse({ user });
+    return successResponse({ item });
   } catch (error) {
     return internalErrorResponse(error.message);
   }

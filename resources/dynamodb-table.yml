@@ -1,17 +1,17 @@
 Resources:
-  AppTable:
+  ItemsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: ${self:custom.names.dynamodbTable}
       AttributeDefinitions:
-        - AttributeName: username
+        - AttributeName: id
           AttributeType: S
-        - AttributeName: password
+        - AttributeName: content
           AttributeType: S
       KeySchema:
-        - AttributeName: username
+        - AttributeName: id
           KeyType: HASH
-        - AttributeName: password
+        - AttributeName: content
           KeyType: RANGE
       # Set the capacity to auto-scale
       BillingMode: PAY_PER_REQUEST
