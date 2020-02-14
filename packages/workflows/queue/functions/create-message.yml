@@ -1,0 +1,7 @@
+createMessage:
+  name: createMessage-${self:provider.stage}
+  handler: src/create-message.apiGatewayHandler
+  events:
+    - http:
+        path: /queues
+        method: post
