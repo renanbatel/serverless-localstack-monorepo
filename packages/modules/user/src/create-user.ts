@@ -1,5 +1,5 @@
-import { APIGatewayProxyEvent } from "aws-lambda";
-import { getDynamoDB, successResponse, badRequestResponse, internalErrorResponse } from 'sdk';
+import { APIGatewayProxyEvent } from 'aws-lambda';
+import { badRequestResponse, getDynamoDB, internalErrorResponse, successResponse } from 'sdk';
 
 export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
   const { username, password } = JSON.parse(event.body);
@@ -10,13 +10,15 @@ export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
 
   try {
     const dynamodb = getDynamoDB();
-    const user = await dynamodb.put({
-      TableName: process.env.DYNAMODB_TABLE,
-      Item: {
-        username,
-        password,
-      },
-    }).promise();
+    const user = await dynamodb
+      .put({
+        TableName: process.env.DYNAMODB_TABLE,
+        Item: {
+          username,
+          password,
+        },
+      })
+      .promise();
 
     return successResponse({ user });
   } catch (error) {

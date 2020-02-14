@@ -9,15 +9,15 @@ export function loadLocalstackConfig(): void {
 
   const ports = {
     dynamodb: 4569,
-  }
+  };
   const config = Object.keys(ports).reduce((carry, service) => {
     return {
       ...carry,
       [service]: {
-        endpoint: `http://${LOCALSTACK_HOSTNAME}:${ports[service]}`
-      }
-    }
+        endpoint: `http://${LOCALSTACK_HOSTNAME}:${ports[service]}`,
+      },
+    };
   }, {});
-  
+
   aws.config.update(config);
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const slsw = require('serverless-webpack');
@@ -33,29 +34,29 @@ module.exports = {
           {
             loader: 'cache-loader',
             options: {
-              cacheDirectory: path.resolve('.webpackCache')
-            }
+              cacheDirectory: path.resolve('.webpackCache'),
+            },
           },
           {
             loader: 'babel-loader',
             options: {
               rootMode: 'upward',
-            }
+            },
           },
           {
             loader: 'ts-loader',
             options: {
               configFile: path.join(__dirname, 'tsconfig.json'),
               transpileOnly: true,
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new ForkTsCheckerPlugin({
-      tsconfig: path.resolve(__dirname, 'tsconfig.json')
+      tsconfig: path.resolve(__dirname, 'tsconfig.json'),
     }),
   ],
 };

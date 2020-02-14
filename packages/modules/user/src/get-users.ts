@@ -1,5 +1,5 @@
-import { APIGatewayProxyEvent } from "aws-lambda";
-import { getDynamoDB, successResponse, badRequestResponse, internalErrorResponse } from 'sdk';
+import { APIGatewayProxyEvent } from 'aws-lambda';
+import { badRequestResponse, getDynamoDB, internalErrorResponse, successResponse } from 'sdk';
 
 export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
   try {

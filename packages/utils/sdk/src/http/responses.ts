@@ -2,7 +2,7 @@ import { LambdaResponse } from './types';
 
 const defaultHeaders = {
   'content-type': 'application/json',
-}
+};
 
 export function response(statusCode: number, body: object, headers = {}): LambdaResponse {
   return {
