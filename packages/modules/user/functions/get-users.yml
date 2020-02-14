@@ -1,0 +1,7 @@
+getUsers:
+  name: getUsers-${self:provider.stage}
+  handler: src/get-users.apiGatewayHandler
+  events:
+    - http:
+        path: /users
+        method: get
