@@ -1,11 +1,9 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { badRequestResponse, getSQS, internalErrorResponse, successResponse } from 'sdk';
-import { resolveQueueUrl } from 'sdk/src/aws/utils';
-import uuid from 'uuid';
+import { badRequestResponse, getSQS, internalErrorResponse, LambdaResponse, resolveQueueUrl, successResponse } from 'sdk';
 
 const { SQS_QUEUE } = process.env;
 
-export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
+export async function apiGatewayHandler(event: APIGatewayProxyEvent): Promise<LambdaResponse> {
   const { content } = JSON.parse(event.body);
 
   if (!content) {
@@ -15,7 +13,6 @@ export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
   try {
     const sqs = getSQS();
     const message = {
-      id: uuid.v4(),
       content,
     };
 

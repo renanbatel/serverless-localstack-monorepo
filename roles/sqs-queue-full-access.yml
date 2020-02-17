@@ -1,11 +1,11 @@
-- Effect: Allow
-  Action:
-    - sqs:DeleteMessage
-    - sqs:GetQueueUrl
-    - sqs:ListQueues
-    - sqs:ReceiveMessage
-    - sqs:SendMessage
-  # Restrict our IAM role permissions to
-  # the specific queue for the stage
-  Resource:
-    - 'Fn::GetAtt': [SQSMessagesQueue, Arn]
+Effect: Allow
+Action:
+  - sqs:DeleteMessage
+  - sqs:GetQueueUrl
+  - sqs:ListQueues
+  - sqs:ReceiveMessage
+  - sqs:SendMessage
+# Restrict our IAM role permissions to
+# the specific queue for the stage
+Resource:
+  - 'Fn::GetAtt': [SQSMessagesQueue, Arn]

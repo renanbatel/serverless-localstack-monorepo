@@ -5,3 +5,6 @@ createItem:
     - http:
         path: /items
         method: post
+createItemInvoke:
+  name: createItemInvoke-${self:provider.stage}
+  handler: src/create-item.invokeHandler

@@ -1,12 +1,10 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { badRequestResponse, getDynamoDB, internalErrorResponse, successResponse } from 'sdk';
+import { badRequestResponse, getDynamoDB, internalErrorResponse, LambdaResponse, successResponse } from 'sdk';
 import uuid from 'uuid';
 
 const { DYNAMODB_TABLE } = process.env;
 
-export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
-  const { content } = JSON.parse(event.body);
-
+export async function createItem(content: string): Promise<LambdaResponse> {
   if (!content) {
     return badRequestResponse();
   }
@@ -28,4 +26,16 @@ export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
   } catch (error) {
     return internalErrorResponse(error.message);
   }
+}
+
+export async function apiGatewayHandler(event: APIGatewayProxyEvent): Promise<LambdaResponse> {
+  const { content } = JSON.parse(event.body);
+
+  return createItem(content);
+}
+
+export async function invokeHandler(event: any): Promise<LambdaResponse> {
+  const { content } = event;
+
+  return createItem(content);
 }

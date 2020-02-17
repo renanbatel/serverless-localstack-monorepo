@@ -23,16 +23,15 @@ provider:
   stage: ${opt:stage, 'local'}
   region: ${opt:region, 'us-east-1'}
   iamRoleStatements:
-    ${file(../../../roles/sqs-queue-full-access.yml)}
+    - ${file(../../../roles/sqs-queue-full-access.yml)}
+    - ${file(../../../roles/lambda-invoke.yml)}
   environment:
     ENV_STAGE: ${self:provider.stage}
-    DYNAMODB_TABLE: ${self:custom.names.dynamodbTable}
     SQS_QUEUE:
       Ref: SQSMessagesQueue
 
 resources:
   - ${file(../../../resources/sqs-queue.yml)}
-  - ${file(../../../resources/dynamodb-table.yml)}
 
 functions:
   - ${file(functions/create-message.yml)}

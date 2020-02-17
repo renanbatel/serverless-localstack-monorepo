@@ -1,27 +1,17 @@
 import { SQSEvent } from 'aws-lambda';
-import { badRequestResponse, getDynamoDB, internalErrorResponse, successResponse } from 'sdk/src';
+import { badRequestResponse, internalErrorResponse, invoke, InvokeFns, LambdaResponse, successResponse } from 'sdk';
 
-const { DYNAMODB_TABLE } = process.env;
+export async function sqsHandler(event: SQSEvent): Promise<LambdaResponse> {
+  const { content } = JSON.parse(event.Records[0].body);
 
-export async function sqsHandler(event: SQSEvent) {
-  const { id, content } = JSON.parse(event.Records[0].body);
-
-  if (!id || !content) {
+  if (!content) {
     return badRequestResponse('Missing parameters in message body.');
   }
 
   try {
-    const dynamodb = getDynamoDB();
-
-    await dynamodb
-      .put({
-        TableName: DYNAMODB_TABLE,
-        Item: {
-          id,
-          content: `${content} (sqs)`,
-        },
-      })
-      .promise();
+    await invoke(InvokeFns.createItem, {
+      content: `${content} (SQS)`,
+    });
 
     return successResponse({
       message: 'SQS Message processed.',
