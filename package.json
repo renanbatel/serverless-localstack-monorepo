@@ -15,12 +15,12 @@
     "clean": "lerna run clean",
     "lint": "eslint --ext .js --ext .ts .",
     "format": "eslint --ext .js --ext .ts --fix .",
-    "local:up": "env $(cat .conf) ENTRYPOINT=-d localstack start",
+    "local:up": "env $(cat .conf) localstack start",
     "local:build": "lerna run local:build",
     "local:watch": "lerna run local:watch --stream --parallel",
     "local:deploy": "lerna run local:deploy",
     "local:remove": "lerna run local:remove",
-    "local:dev": "yarn local:build && yarn local:up && sleep 5 && yarn local:deploy && yarn local:watch"
+    "local:dev": "yarn local:build && yarn local:up && yarn local:deploy && yarn local:watch"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
