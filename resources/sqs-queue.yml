@@ -1,0 +1,5 @@
+Resources:
+  SQSMessagesQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ${self:custom.names.sqsQueue}

@@ -2,6 +2,8 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import { badRequestResponse, getDynamoDB, internalErrorResponse, successResponse } from 'sdk';
 import uuid from 'uuid';
 
+const { DYNAMODB_TABLE } = process.env;
+
 export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
   const { content } = JSON.parse(event.body);
 
@@ -14,7 +16,7 @@ export async function apiGatewayHandler(event: APIGatewayProxyEvent) {
     const id = uuid.v4();
     const item = await dynamodb
       .put({
-        TableName: process.env.DYNAMODB_TABLE,
+        TableName: DYNAMODB_TABLE,
         Item: {
           id,
           content,

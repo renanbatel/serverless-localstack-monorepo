@@ -1,0 +1,39 @@
+service: queue
+
+frameworkVersion: '1.63.0'
+
+plugins:
+  - serverless-localstack
+  - serverless-webpack
+
+package:
+  individually: false
+
+custom:
+  names:
+    ${file(../../../serverless.config.yml):custom.names}
+  webpack:
+    ${file(../../../serverless.config.yml):custom.webpack}
+  localstack:
+    ${file(../../../serverless.config.yml):custom.localstack}
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'us-east-1'}
+  iamRoleStatements:
+    ${file(../../../roles/sqs-queue-full-access.yml)}
+  environment:
+    ENV_STAGE: ${self:provider.stage}
+    DYNAMODB_TABLE: ${self:custom.names.dynamodbTable}
+    SQS_QUEUE:
+      Ref: SQSMessagesQueue
+
+resources:
+  - ${file(../../../resources/sqs-queue.yml)}
+  - ${file(../../../resources/dynamodb-table.yml)}
+
+functions:
+  - ${file(functions/create-message.yml)}
+  - ${file(functions/receive-message.yml)}
