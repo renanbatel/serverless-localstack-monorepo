@@ -23,7 +23,7 @@ provider:
   stage: ${opt:stage, 'local'}
   region: ${opt:region, 'us-east-1'}
   iamRoleStatements:
-    ${file(../../../roles/dynamodb-table-full-access.yml)}
+    - ${file(../../../roles/dynamodb-table-full-access.yml)}
   environment:
     ENV_STAGE: ${self:provider.stage}
     DYNAMODB_TABLE: ${self:custom.names.dynamodbTable}
