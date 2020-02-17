@@ -26,10 +26,14 @@ provider:
     ${file(../../../roles/sqs-queue-full-access.yml)}
   environment:
     ENV_STAGE: ${self:provider.stage}
-    SQS_QUEUE: ${self:custom.names.sqsQueue}
+    DYNAMODB_TABLE: ${self:custom.names.dynamodbTable}
+    SQS_QUEUE:
+      Ref: SQSMessagesQueue
 
 resources:
   - ${file(../../../resources/sqs-queue.yml)}
+  - ${file(../../../resources/dynamodb-table.yml)}
 
 functions:
   - ${file(functions/create-message.yml)}
+  - ${file(functions/receive-message.yml)}

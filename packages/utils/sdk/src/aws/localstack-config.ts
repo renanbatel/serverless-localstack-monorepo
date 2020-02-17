@@ -9,6 +9,7 @@ export function loadLocalstackConfig(): void {
 
   const ports = {
     dynamodb: 4569,
+    sqs: 4576,
   };
   const config = Object.keys(ports).reduce((carry, service) => {
     return {

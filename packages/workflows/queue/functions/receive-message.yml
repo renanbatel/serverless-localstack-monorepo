@@ -1,0 +1,8 @@
+receiveMessageSqs:
+  name: receiveMessageSqs-${self:provider.stage}
+  handler: src/receive-message.sqsHandler
+  events:
+    - sqs:
+        batchSize: 1
+        arn:
+          Fn::GetAtt: [SQSMessagesQueue, Arn]
