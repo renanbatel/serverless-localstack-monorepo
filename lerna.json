@@ -4,6 +4,7 @@
     "--no-lockfile"
   ],
   "packages": [
+    "packages/infra/*",
     "packages/modules/*",
     "packages/utils/*",
     "packages/workflows/*"

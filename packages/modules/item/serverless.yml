@@ -22,6 +22,7 @@ provider:
   runtime: nodejs10.x
   stage: ${opt:stage, 'local'}
   region: ${opt:region, 'us-east-1'}
+  apiGateway: ${file(../../../serverless.config.yml):apiGateway}
   iamRoleStatements:
     - ${file(../../../roles/dynamodb-table-full-access.yml)}
   environment:

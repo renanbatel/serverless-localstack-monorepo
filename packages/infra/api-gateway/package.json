@@ -1,0 +1,9 @@
+{
+  "name": "api-gateway",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "local:deploy": "LAMBDA_MOUNT_CWD=$(pwd)/.webpack/service sls deploy --stage local",
+    "local:remove": "LAMBDA_MOUNT_CWD=$(pwd)/.webpack/service sls remove --stage local"
+  }
+}

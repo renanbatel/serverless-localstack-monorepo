@@ -1,0 +1,15 @@
+Resources:
+  ItemsPathResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      PathPart: items
+      RestApiId:
+        Ref: ApiGatewayRestApi
+      ParentId:
+        Fn::GetAtt: [ ApiGatewayRestApi, RootResourceId ]
+Outputs:
+  itemsResourceOutput:
+    Export:
+      Name: serverless-localstack-monorepo-${self:provider.stage}-items-resource-id
+    Value:
+      Ref: ItemsPathResource

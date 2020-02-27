@@ -6,13 +6,14 @@
   "license": "MIT",
   "workspaces": {
     "packages": [
+      "packages/infra/*",
       "packages/modules/*",
       "packages/utils/*",
       "packages/workflows/*"
     ]
   },
   "scripts": {
-    "clean": "lerna run clean",
+    "clean": "lerna run clean && rm -rf node_modules",
     "lint": "eslint --ext .js --ext .ts .",
     "format": "eslint --ext .js --ext .ts --fix .",
     "local:up": "env $(cat .conf) localstack start",
