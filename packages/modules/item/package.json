@@ -9,6 +9,9 @@
     "local:deploy": "LAMBDA_MOUNT_CWD=$(pwd)/.webpack/service sls deploy --stage local",
     "local:remove": "LAMBDA_MOUNT_CWD=$(pwd)/.webpack/service sls remove --stage local"
   },
+  "devDependencies": {
+    "api-gateway": "0.0.1"
+  },
   "dependencies": {
     "uuid": "^3.4.0"
   }
