@@ -24,7 +24,7 @@ Remove any existing `localstack/localstack` image to get its `latest` version.
 $ docker rmi $(docker images localstack/localstack -q)
 ```
 
-Install the project dependencies and then run `local:dev`, the script will build the project, start LocalStack container (its env variables are all placed in `.conf`), deploy the resources locally and then watch for changes in the functions files.
+Install the project dependencies and then run `local:dev`, the script will build the project, start LocalStack container (its env variables are all placed in `.localstack.env`), deploy the resources locally and then watch for changes in the functions files.
 
 ```sh
 $ yarn # npm i
