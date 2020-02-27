@@ -14,3 +14,14 @@ custom:
     lambda:
       mountCode: true
     debug: false
+
+apiGateway:
+  restApiId:
+    Fn::ImportValue: serverless-localstack-monorepo-${self:provider.stage}-id
+  restApiRootResourceId:
+    Fn::ImportValue: serverless-localstack-monorepo-${self:provider.stage}-root-resource-id
+  restApiResources:
+    items:
+      Fn::ImportValue: serverless-localstack-monorepo-${self:provider.stage}-items-resource-id
+    queues:
+      Fn::ImportValue: serverless-localstack-monorepo-${self:provider.stage}-queues-resource-id

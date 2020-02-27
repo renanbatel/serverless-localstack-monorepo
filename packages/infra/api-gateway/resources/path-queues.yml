@@ -1,0 +1,15 @@
+Resources:
+  QueuesPathResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      PathPart: queues
+      RestApiId:
+        Ref: ApiGatewayRestApi
+      ParentId:
+        Fn::GetAtt: [ ApiGatewayRestApi, RootResourceId ]
+Outputs:
+  queuesResourceOutput:
+    Export:
+      Name: serverless-localstack-monorepo-${self:provider.stage}-queues-resource-id
+    Value:
+      Ref: QueuesPathResource

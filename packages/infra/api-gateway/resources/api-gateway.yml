@@ -1,0 +1,20 @@
+Resources:
+  ApiGatewayRestApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: serverless-localstack-monorepo-${self:provider.stage}
+      MinimumCompressionSize: 1024
+      EndpointConfiguration:
+        Types:
+          - EDGE
+Outputs:
+  apiGatewayRestApiId:
+    Value:
+      Ref: ApiGatewayRestApi
+    Export:
+      Name: serverless-localstack-monorepo-${self:provider.stage}-id
+  apiGatewayRestApiRootResourceId:
+    Value:
+      Fn::GetAtt: [ ApiGatewayRestApi, RootResourceId ]
+    Export:
+      Name: serverless-localstack-monorepo-${self:provider.stage}-root-resource-id

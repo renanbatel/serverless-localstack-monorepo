@@ -1,0 +1,23 @@
+service: api-gateway
+
+frameworkVersion: '1.63.0'
+
+plugins:
+  - serverless-localstack
+
+custom:
+  names:
+    ${file(../../../serverless.config.yml):custom.names}
+  localstack:
+    ${file(../../../serverless.config.yml):custom.localstack}
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'us-east-1'}
+
+resources:
+  - ${file(resources/api-gateway.yml)}
+  - ${file(resources/path-items.yml)}
+  - ${file(resources/path-queues.yml)}
